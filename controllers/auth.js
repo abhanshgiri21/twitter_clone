@@ -31,7 +31,13 @@ const LoginUser = async (req, res) => {
     return okResponse(res, user.toJSON());
 }
 
+const GetUserDetails = async (req, res) => {
+    let userId = req.user;
+    return okResponse(res, data);
+}
+
 module.exports = {
     CreateUser,
-    LoginUser
+    LoginUser,
+    GetUserDetails
 }
