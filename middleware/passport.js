@@ -2,6 +2,7 @@
 
 const JwtStrategy = require('passport-jwt').Strategy;
 const ExtractJwt = require('passport-jwt').ExtractJwt;
+const Token = require('../models//Token');
 
 module.exports = function (passport) {
 
@@ -14,7 +15,7 @@ module.exports = function (passport) {
         console.log(req.headers.authorization);
         let token = req.headers.authorization.split(' ')[1];
         console.log(token);
-        let auth_token = await Token.query().where('token', token).andWhere('userId', jwt_payload.userId).eager('user.[user_details, company_details]').first();
+        let auth_token = await Token.query().where('token', token).andWhere('userId', jwt_payload.userId).eager('user').first();
 
         if (auth_token) {
             req.token = token;

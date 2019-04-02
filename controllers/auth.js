@@ -32,12 +32,18 @@ const LoginUser = async (req, res) => {
 }
 
 const GetUserDetails = async (req, res) => {
-    let userId = req.user;
+    let data = req.user;
+    return okResponse(res, data);
+}
+
+const GetUsersList = async (req, res) => {
+    let data = await User.query();
     return okResponse(res, data);
 }
 
 module.exports = {
     CreateUser,
     LoginUser,
-    GetUserDetails
+    GetUserDetails,
+    GetUsersList
 }

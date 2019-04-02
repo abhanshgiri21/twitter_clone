@@ -25,6 +25,19 @@ class User extends BaseModel {
         }
     }
 
+    static get relationMappings() {
+        return {
+            tweets: {
+                relation: BaseModel.HasManyRelation,
+                modelClass: __dirname + '/Tweet',
+                join: {
+                    from: 'user.id',
+                    to: 'tweets.userId'
+                }
+            }
+        }
+    }
+
     async $beforeInsert() {
         await super.$beforeInsert;
 
