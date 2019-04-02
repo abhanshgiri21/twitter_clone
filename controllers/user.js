@@ -34,11 +34,8 @@ const DeleteTweet = async (req, res) => {
 }
 
 const FetchUserTweets = async (req, res) => {
-    console.log(req.user.id);
     let user = await Follow.query().select('followed_user').where('following_user', req.user.id);
-    console.log(user);
     let ids = user.map(c => c.followed_user);
-    console.log(ids);
     if (ids.length < 1) {
         return okResponse(res, []);
     }

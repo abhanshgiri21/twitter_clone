@@ -12,16 +12,14 @@ module.exports = function (passport) {
     opts.passReqToCallback = true;
 
     passport.use(new JwtStrategy(opts, async function (req, jwt_payload, done) {
-        console.log(req.headers.authorization);
+        (req.headers.authorization);
         let token = req.headers.authorization.split(' ')[1];
-        console.log(token);
         let auth_token = await Token.query().where('token', token).andWhere('userId', jwt_payload.userId).eager('user').first();
 
         if (auth_token) {
             req.token = token;
             return done(null, auth_token.user);
         } else {
-            console.log('token is ', token);
             return done(null, false);
         }
     }));
