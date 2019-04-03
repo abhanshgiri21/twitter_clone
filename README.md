@@ -1,4 +1,4 @@
-### Twitter Clone
+## Twitter Clone
 
 This project is an attempt to clone some, if not all of the functionalities of twitter by exposing a set of REST api's that support various operations.
 
@@ -18,4 +18,109 @@ Steps to run the api server:
 7) Import the following postman collection to have a look at the api's and try them out yourself. Set the following environment variable in postman.
     `baseurl : localhost:3000`
 
+___
+
+### API Endpoints
+
+All the parameters in all the api's are required, unless state optional
+
+Link to [Postman Collection](https://www.getpostman.com/collections/c93667c2feb6950c89a2)
+
+#### Signup
+**route - /signup**
+
+**type: POST**
+
+ Api for creating a new User
+
+#### Parameters In *x-www-form-urlencoded* Body
+> name: username
+> type: string
+
+>name: password
+>type: string
+
+___
+#### Login
+**route - /login**
+
+**type: POST**
+
+ Api for Logging in a User
+
+#### Parameters In *x-www-form-urlencoded* Body
+> name: username
+> type: string
+
+>name: password
+>type: string
+
+___
+#### Follow A User
+**route - /follow/:userId**
+
+**type: GET**
+
+ Api To Follow a User
+
+ #### Headers
+ > Authorizations header with Bearer token provided in Login Api's response
+
+#### Parameters In *url params* Body
+> user id of user to be followed in url string
+
+
+___
+#### Get Profile
+**route - /me**
+
+**type: GET**
+
+ Api for Getting Current User Profile
+#### Headers
+ > Authorizations header with Bearer token provided in Login Api's response
+
+___
+
+#### Tweet
+**route - /login**
+
+**type: POST**
+
+ Api for Creating a tweet
+
+#### Headers
+ > Authorizations header with Bearer token provided in Login Api's response
+
+
+#### Parameters In *x-www-form-urlencoded* Body
+> name: tweet
+> type: string
+
+
+___
+#### Delete Tweet
+**route - /tweet/:tweetId**
+
+**type: DELETE**
+
+ Api To Delete A Tweet
+
+ #### Headers
+ > Authorizations header with Bearer token provided in Login Api's response
+
+#### Parameters In *url params* Body
+> user id of user to be followed in url string
+
+___
+
+#### Fetch Tweets
+**route - /tweets**
+
+**type: GET**
+
+ Api To Get Tweets of all the user's that the current user follows
+
+ #### Headers
+ > Authorizations header with Bearer token provided in Login Api's response
 
